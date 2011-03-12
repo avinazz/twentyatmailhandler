@@ -79,7 +79,7 @@ public class MailHandler {
         out.append(debug);
         System.out.println(debug);
         out.append("Before Login");
-       c.login(sender.getUsername(), "cloud");
+        c.login(sender.getUsername(), "cloud");
         out.append("After Login");
         out.append("Before Send Message");
         c.sendMessage(recipient.getUsername(),email.getBodyPlain());

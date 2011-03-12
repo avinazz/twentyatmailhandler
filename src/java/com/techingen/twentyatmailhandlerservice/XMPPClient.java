@@ -45,7 +45,8 @@ public class XMPPClient implements MessageListener {
 	}
 
 	public void sendMessage(String to,String message) throws XMPPException {
-		Chat chat = connection.getChatManager().createChat(to, this);
+                String appendedTalkTo=to+"@"+HOSTNAME;
+		Chat chat = connection.getChatManager().createChat(appendedTalkTo, this);
 		chat.sendMessage(message);
 	}
         /*
