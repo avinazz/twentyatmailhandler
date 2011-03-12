@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar, 2011 2:58:43 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="twentyat" name="com.techingen.twentyatmailhandlerservice.entity.TwentyatUser" table="twentyat_user">
+    <id name="twentyatUserId" type="string">
+      <column length="45" name="twentyat_user_id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="firstName" type="string">
+      <column length="45" name="first_name"/>
+    </property>
+    <property name="lastName" type="string">
+      <column length="45" name="last_name"/>
+    </property>
+    <property name="email" type="string">
+      <column length="45" name="email"/>
+    </property>
+    <property name="mobilePhone" type="string">
+      <column length="45" name="mobile_phone"/>
+    </property>
+    <property name="photo" type="string">
+      <column name="photo"/>
+    </property>
+    <property name="friendlyName" type="string">
+      <column name="friendly_name"/>
+    </property>
+    <property name="middleName" type="string">
+      <column length="45" name="middle_name"/>
+    </property>
+    <property name="facebookId" type="java.lang.Long">
+      <column name="facebook_id"/>
+    </property>
+    <property name="isActive" type="java.lang.Boolean">
+      <column name="is_active"/>
+    </property>
+    <property name="streetAddress" type="string">
+      <column length="100" name="street_address"/>
+    </property>
+    <property name="locality" type="string">
+      <column length="50" name="locality"/>
+    </property>
+    <property name="region" type="string">
+      <column length="50" name="region"/>
+    </property>
+    <property name="postalCode" type="java.lang.Integer">
+      <column name="postal_code"/>
+    </property>
+    <property name="country" type="string">
+      <column length="30" name="country"/>
+    </property>
+    <property name="username" type="string">
+      <column length="45" name="username" not-null="true"/>
+    </property>
+    <set inverse="true" name="twentyatGroups">
+      <key>
+        <column length="45" name="twentyat_user_id"/>
+      </key>
+      <one-to-many class="com.techingen.twentyatmailhandlerservice.entity.TwentyatGroup"/>
+    </set>
+    <set inverse="true" name="recipients">
+      <key>
+        <column length="45" name="recipient_id" not-null="true"/>
+      </key>
+      <one-to-many class="com.techingen.twentyatmailhandlerservice.entity.Recipient"/>
+    </set>
+    <set inverse="true" name="friendsMappings">
+      <key>
+        <column length="45" name="friends_id" not-null="true"/>
+      </key>
+      <one-to-many class="com.techingen.twentyatmailhandlerservice.entity.FriendsMapping"/>
+    </set>
+    <set inverse="true" name="contactPersons">
+      <key>
+        <column length="45" name="twentyat_user_id"/>
+      </key>
+      <one-to-many class="com.techingen.twentyatmailhandlerservice.entity.ContactPerson"/>
+    </set>
+    <set inverse="true" name="messages">
+      <key>
+        <column length="45" name="sender_id" not-null="true"/>
+      </key>
+      <one-to-many class="com.techingen.twentyatmailhandlerservice.entity.Message"/>
+    </set>
+  </class>
+</hibernate-mapping>

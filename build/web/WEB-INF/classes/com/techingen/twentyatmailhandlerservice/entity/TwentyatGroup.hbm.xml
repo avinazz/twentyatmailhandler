@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11 Mar, 2011 2:58:43 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="twentyat" name="com.techingen.twentyatmailhandlerservice.entity.TwentyatGroup" table="twentyat_group">
+    <id name="twentyatGroupId" type="java.lang.Integer">
+      <column name="twentyat_group_id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="com.techingen.twentyatmailhandlerservice.entity.TwentyatUser" fetch="select" name="twentyatUser">
+      <column length="45" name="twentyat_user_id"/>
+    </many-to-one>
+    <property name="groupName" type="string">
+      <column length="45" name="group_name"/>
+    </property>
+    <set inverse="true" name="friendsMappings">
+      <key>
+        <column name="twentyat_group_id" not-null="true"/>
+      </key>
+      <one-to-many class="com.techingen.twentyatmailhandlerservice.entity.FriendsMapping"/>
+    </set>
+  </class>
+</hibernate-mapping>
