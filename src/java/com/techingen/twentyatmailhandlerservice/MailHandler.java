@@ -26,7 +26,7 @@ public class MailHandler {
     private Email email;
     public void forwardMail(Email email){
     this.email=email;
-    File file=new File("/root/Desktop/MailHandler.log");
+    File file=new File("MailHandler.log");
     PrintWriter out=null;
     try{
     out=new PrintWriter(file);
@@ -34,7 +34,11 @@ public class MailHandler {
     HibernateUtil hu=new HibernateUtil();
     SessionFactory sf=hu.getSessionFactory();
     Session session=sf.openSession();
-    String hql="from Message message where message.messageId="+email.getSubject().split(":")[1];
+    //Message Format <MessageId#123>
+    out.println(email.getSubject());
+    String messageId=email.getSubject().split("<")[1].split("#")[1].split(">")[0];
+    out.println(messageId);
+    String hql="from Message message where message.messageId="+messageId;
     out.print(hql);
     Query query=session.createQuery(hql);
     List<Message>lstMessages=query.list();
@@ -46,6 +50,8 @@ public class MailHandler {
         Set<Recipient>setSenders=message.getRecipients();
         Iterator<Recipient>iSenders=setSenders.iterator();
         sender=iSenders.next().getTwentyatUser();
+        out.append(sender.getEmail()+":"+recipient.getEmail());
+        System.out.println(sender.getEmail()+":"+recipient.getEmail());
         sendMessageToTwentyatUser(sender,recipient,email);
     }
     else{
@@ -67,7 +73,7 @@ public class MailHandler {
     }
     }
     private void sendMessageToTwentyatUser(TwentyatUser sender,TwentyatUser recipient,Email email){
-        File file=new File("/root/Desktop/MailHandlerSmack.log");
+        File file=new File("MailHandlerSmack.log");
         PrintWriter out=null;
         try{
         //Login to XMPP using recipient credentials
@@ -75,18 +81,15 @@ public class MailHandler {
         out=new PrintWriter(file);
         XMPPClient c = new XMPPClient();
         //XMPPConnection.DEBUG_ENABLED = true;
-        String debug="Sender:"+sender.getUsername()+"|Recipient:"+recipient.getUsername()+":Message:"+email.getBodyPlain();
+        String debug="Sender:"+sender.getEmail()+":"+sender.getTwentyatUserId()+"|Recipient:"+recipient.getEmail()+":Id:"+recipient.getTwentyatUserId()+":Message:"+email.getBodyPlain();
         out.append(debug);
         System.out.println(debug);
         out.append("Before Login");
-        c.login(sender.getUsername(), "cloud");
+        c.login(sender.getTwentyatUserId(),sender.getEmail());
         out.append("After Login");
         out.append("Before Send Message");
-        c.sendMessage(recipient.getUsername(),email.getBodyPlain());
-        c.sendMessage(recipient.getUsername(),email.getBodyPlain());
-        c.sendMessage(recipient.getUsername(),email.getBodyPlain());
-        c.sendMessage(recipient.getUsername(),email.getBodyPlain());
-        c.sendMessage(recipient.getUsername(),email.getBodyPlain());
+        c.sendMessage(recipient.getTwentyatUserId(),email.getBodyPlain());
+        
         out.append("After Send Message");
         c.disconnect();
         out.append("After Disconnect");

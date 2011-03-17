@@ -1,29 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 11 Mar, 2011 2:58:43 PM by Hibernate Tools 3.2.1.GA -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16 Mar, 2011 8:49:46 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class catalog="twentyat" name="com.techingen.twentyatmailhandlerservice.entity.Message" table="message">
-    <id name="messageId" type="java.lang.Integer">
-      <column name="message_id"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="com.techingen.twentyatmailhandlerservice.entity.TwentyatUser" fetch="select" name="twentyatUser">
-      <column length="45" name="sender_id" not-null="true"/>
-    </many-to-one>
-    <property name="datetime" type="timestamp">
-      <column length="19" name="datetime"/>
-    </property>
-    <property name="messageText" type="string">
-      <column length="45" name="message_text"/>
-    </property>
-    <property name="parentId" type="java.lang.Integer">
-      <column name="parent_id"/>
-    </property>
-    <set inverse="true" name="recipients">
-      <key>
-        <column name="message_id" not-null="true"/>
-      </key>
-      <one-to-many class="com.techingen.twentyatmailhandlerservice.entity.Recipient"/>
-    </set>
-  </class>
+    <class name="com.techingen.twentyatmailhandlerservice.entity.Message" table="message" catalog="twentyat">
+        <id name="messageId" type="java.lang.Integer">
+            <column name="message_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="twentyatUser" class="com.techingen.twentyatmailhandlerservice.entity.TwentyatUser" fetch="select">
+            <column name="sender_id" length="45" not-null="true" />
+        </many-to-one>
+        <property name="datetime" type="timestamp">
+            <column name="datetime" length="19" />
+        </property>
+        <property name="messageText" type="string">
+            <column name="message_text" length="45" />
+        </property>
+        <property name="parentId" type="java.lang.Integer">
+            <column name="parent_id" />
+        </property>
+        <set name="recipients" inverse="true">
+            <key>
+                <column name="message_id" not-null="true" />
+            </key>
+            <one-to-many class="com.techingen.twentyatmailhandlerservice.entity.Recipient" />
+        </set>
+    </class>
 </hibernate-mapping>

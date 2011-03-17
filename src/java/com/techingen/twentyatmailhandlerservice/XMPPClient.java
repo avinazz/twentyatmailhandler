@@ -27,7 +27,7 @@ import org.jivesoftware.smack.packet.RosterPacket;
  *
  */
 public class XMPPClient implements MessageListener {
-        private static final String HOSTNAME="cloud07";
+        private static final String HOSTNAME="ec2-50-16-41-243.compute-1.amazonaws.com";
 	XMPPConnection connection;
 
 	public void login(String userName, String password) throws XMPPException {

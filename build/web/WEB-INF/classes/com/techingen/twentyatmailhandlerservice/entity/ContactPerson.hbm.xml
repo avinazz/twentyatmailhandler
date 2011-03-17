@@ -1,53 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 11 Mar, 2011 2:58:43 PM by Hibernate Tools 3.2.1.GA -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16 Mar, 2011 8:49:46 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class catalog="twentyat" name="com.techingen.twentyatmailhandlerservice.entity.ContactPerson" table="contact_person">
-    <id name="contactId" type="java.lang.Integer">
-      <column name="contact_id"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="com.techingen.twentyatmailhandlerservice.entity.TwentyatUser" fetch="select" name="twentyatUser">
-      <column length="45" name="twentyat_user_id"/>
-    </many-to-one>
-    <property name="firstName" type="string">
-      <column length="45" name="first_name"/>
-    </property>
-    <property name="lastName" type="string">
-      <column length="45" name="last_name"/>
-    </property>
-    <property name="email" type="string">
-      <column length="100" name="email"/>
-    </property>
-    <property name="mobilePhone" type="string">
-      <column length="45" name="mobile_phone"/>
-    </property>
-    <property name="photo" type="string">
-      <column length="45" name="photo"/>
-    </property>
-    <property name="friendlyName" type="string">
-      <column name="friendly_name"/>
-    </property>
-    <property name="middleName" type="string">
-      <column length="50" name="middle_name"/>
-    </property>
-    <property name="facebookId" type="string">
-      <column length="45" name="facebook_id"/>
-    </property>
-    <property name="streetAddress" type="string">
-      <column length="100" name="street_address"/>
-    </property>
-    <property name="locality" type="string">
-      <column length="50" name="locality"/>
-    </property>
-    <property name="region" type="string">
-      <column length="50" name="region"/>
-    </property>
-    <property name="postalCode" type="java.lang.Integer">
-      <column name="postal_code"/>
-    </property>
-    <property name="country" type="string">
-      <column length="30" name="country"/>
-    </property>
-  </class>
+    <class name="com.techingen.twentyatmailhandlerservice.entity.ContactPerson" table="contact_person" catalog="twentyat">
+        <id name="contactId" type="java.lang.Integer">
+            <column name="contact_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="twentyatUser" class="com.techingen.twentyatmailhandlerservice.entity.TwentyatUser" fetch="select">
+            <column name="twentyat_user_id" length="45" />
+        </many-to-one>
+        <property name="firstName" type="string">
+            <column name="first_name" length="45" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+        <property name="mobilePhone" type="string">
+            <column name="mobile_phone" length="45" />
+        </property>
+        <property name="photo" type="string">
+            <column name="photo" length="45" />
+        </property>
+        <property name="friendlyName" type="string">
+            <column name="friendly_name" />
+        </property>
+        <property name="middleName" type="string">
+            <column name="middle_name" length="50" />
+        </property>
+        <property name="facebookId" type="java.lang.Long">
+            <column name="facebook_id" />
+        </property>
+        <property name="streetAddress" type="string">
+            <column name="street_address" length="100" />
+        </property>
+        <property name="locality" type="string">
+            <column name="locality" length="50" />
+        </property>
+        <property name="region" type="string">
+            <column name="region" length="50" />
+        </property>
+        <property name="postalCode" type="java.lang.Integer">
+            <column name="postal_code" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="30" />
+        </property>
+    </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package com.techingen.twentyatmailhandlerservice.entity;
-// Generated 11 Mar, 2011 2:58:42 PM by Hibernate Tools 3.2.1.GA
+// Generated 16 Mar, 2011 8:49:46 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;

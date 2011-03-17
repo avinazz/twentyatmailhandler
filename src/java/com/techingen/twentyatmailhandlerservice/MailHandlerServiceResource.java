@@ -64,7 +64,7 @@ public class MailHandlerServiceResource {
         Email email=new Email(from,sender,recipient,subject,bodyPlain,bodyHtml);
         JSONObject obj=JSONObject.fromObject(email);
         try{
-        File file =new File("/root/Desktop/goofy.log");
+        File file =new File("MailHandlerServiceResource.log");
         PrintWriter out=new PrintWriter(file);
         out.print(obj.toString());
 
